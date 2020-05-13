@@ -1,3 +1,6 @@
 *.wav
 .DS_Store
 *.meta
+vid
+*.aup
+*_data

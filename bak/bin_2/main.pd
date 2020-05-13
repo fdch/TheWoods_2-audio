@@ -1,6 +1,6 @@
 #N struct 1233-point float x0 float y0 float s;
 #N struct 1234-point float x0 float y0 float s;
-#N canvas 530 270 450 300 12;
+#N canvas 536 47 450 300 12;
 #X declare -path ./lib -lib fd_lib -path fd_lib -path vbap;
 #N canvas 67 163 450 297 dac 0;
 #X obj 16 19 catch~ mono;
@@ -812,7 +812,7 @@ background_sound-44100 background;
 #X restore 224 40 pd OSC-messages fromUnity;
 #X obj 10 220 cnv 15 100 60 empty empty empty 20 12 0 14 -204786 -66577
 0;
-#N canvas 26 372 968 532 controls 0;
+#N canvas 312 246 968 532 controls 0;
 #X obj 8 101 _4chan-mix gavio dacout;
 #X obj 282 101 _4chan-mix cloud dacout;
 #X obj 331 309 _vol 1;
@@ -914,7 +914,7 @@ listening_port 0 -10 0 15 -262130 -1 -1 6161 256;
 #X obj 359 59 tgl 15 0 cloud cloud-set cloud 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 283 15 tgl 60 0 pd-dsp pd-dsp-set DSP 15 30 0 15 -204786 -1
--1 1 1;
+-1 0 1;
 #X obj 146 101 _4chan-mix ambience dacout;
 #X obj 360 19 bng 15 250 50 0 triggerCloud triggerCloud-set triggerCloud
 17 7 0 10 -262144 -1 -1;
@@ -1129,7 +1129,7 @@ preset 0 -8 0 10 -262144 -1 -1 1;
 #X connect 15 0 14 0;
 #X coords 0 -1 1 1 77 208 1 100 100;
 #X restore 248 309 pd ambience;
-#X obj 447 21 tgl 15 0 mute mute-set mute 17 7 0 10 -262144 -1 -1 1
+#X obj 447 21 tgl 15 0 mute mute-set mute 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 446 39 tgl 15 0 mimic_TriggerDistraction mimic_TriggerDistraction-set
 mimic_TriggerDistraction 17 7 0 10 -262144 -1 -1 0 1;
@@ -1212,7 +1212,7 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 133 127 counter;
 #X obj 133 153 t f f;
 #X msg 242 127 set \$1;
-#X msg 242 153 6;
+#X msg 242 153 5;
 #X obj 266 97 loadbang;
 #X obj 133 179 makefilename ../rec/rec-%03d.wav;
 #X msg 133 205 \; rec open \$1 \, start;
@@ -1243,7 +1243,7 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X connect 4 0 3 2;
 #X connect 5 0 3 3;
 #X restore 13 128 pd rec;
-#N canvas 368 267 671 581 intro_animation 0;
+#N canvas 496 185 671 581 intro_animation 0;
 #X obj 71 96 + 60;
 #X obj 83 257 makenote 100 1000;
 #X obj 83 283 pack;
@@ -1255,8 +1255,8 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 111 370 t f f;
 #X obj 224 469 *;
 #X obj 83 231 pack f 30;
-#X obj 429 40 r curr-frame;
-#X obj 429 66 text search labels;
+#X obj 472 85 r curr-frame;
+#X obj 472 111 text search labels;
 #X obj 497 490 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 180 46 0 2 4 5 7 9 10;
@@ -1266,12 +1266,12 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 411 352 list store;
 #X msg 427 247 get \$1 1;
 #X obj 437 202 counter -m 12;
-#X obj 429 92 sel -1;
-#X obj 403 117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 472 137 sel -1;
+#X obj 514 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 568 150 sel;
 #X msg 568 176 0;
-#N canvas 411 107 646 434 pedals 0;
+#N canvas 540 102 646 434 pedals 0;
 #X obj 32 306 clone _pedals 4;
 #X obj 32 216 list append 6;
 #X obj 224 304 clone _pedals 4;
@@ -1301,10 +1301,6 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 33 76 t a a;
 #X obj 32 332 *~ 0.45;
 #X obj 233 335 *~ 0.25;
-#X floatatom 455 132 5 0 0 0 - - -;
-#X floatatom 167 13 5 0 0 0 - - -;
-#X floatatom 123 47 5 0 0 0 - - -;
-#X msg 225 40 -2 3 8 10;
 #X connect 0 0 27 0;
 #X connect 1 0 9 0;
 #X connect 2 0 28 0;
@@ -1335,9 +1331,6 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X connect 26 1 11 0;
 #X connect 27 0 19 0;
 #X connect 28 0 20 0;
-#X connect 29 0 16 0;
-#X connect 31 0 26 0;
-#X connect 32 0 26 0;
 #X restore 46 22 pd pedals;
 #X obj 77 163 t f b b;
 #X obj 220 175 t f f;
@@ -1354,7 +1347,6 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 77 559 throw~ mono;
 #X obj 77 533 *~ 0.25;
 #X msg 398 149 3 310;
-#X obj 434 127 moses 4;
 #X connect 0 0 26 0;
 #X connect 1 0 2 0;
 #X connect 1 1 2 1;
@@ -1378,7 +1370,7 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X connect 18 0 33 0;
 #X connect 19 0 18 0;
 #X connect 20 0 19 0;
-#X connect 21 1 40 0;
+#X connect 21 1 22 0;
 #X connect 22 0 39 0;
 #X connect 23 0 24 0;
 #X connect 24 0 20 0;
@@ -1401,9 +1393,8 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X connect 36 0 27 0;
 #X connect 38 0 37 0;
 #X connect 39 0 15 0;
-#X connect 40 0 22 0;
 #X restore 274 97 pd intro_animation;
-#N canvas 413 318 599 382 gemwin 0;
+#N canvas 587 157 599 382 gemwin 0;
 #X obj 226 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 372 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -1451,12 +1442,7 @@ bang \; mute-set 1 \; rain-vol-set 105 \; back-vol-set 95 \;;
 #X obj 137 142 sel 0;
 #X obj 137 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 137 188 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 137 214 sel;
 #X connect 11 0 13 0;
 #X connect 13 0 12 0;
 #X connect 19 0 20 0;
 #X connect 20 0 21 0;
-#X connect 21 0 22 0;
-#X connect 22 0 23 0;
