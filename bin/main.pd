@@ -1,5 +1,5 @@
-#N struct 1319-point float x0 float y0 float s;
-#N struct 1320-point float x0 float y0 float s;
+#N struct 1367-point float x0 float y0 float s;
+#N struct 1368-point float x0 float y0 float s;
 #N canvas 521 50 450 300 12;
 #X declare -path ./lib -lib fd_lib -path fd_lib -path vbap;
 #X obj 13 13 declare -path ./lib -lib fd_lib -path fd_lib -path vbap
@@ -366,6 +366,7 @@ extra-presets-recall-set \$1 \;;
 #X connect 8 0 9 0;
 #X connect 9 0 11 0;
 #X connect 10 0 4 0;
+#X connect 10 1 9 0;
 #X connect 11 0 10 0;
 #X restore 26 80 pd melody;
 #X obj 182 51 r curr-frame;
@@ -1504,7 +1505,7 @@ background_sound-44100 background;
 #X connect 2 0 6 0;
 #X connect 3 0 2 0;
 #X restore 30 32 pd ports_setup;
-#N canvas 0 94 904 300 fromUnity 0;
+#N canvas 14 145 904 300 fromUnity 0;
 #X obj 67 15 r fromUnity;
 #X msg 163 103 \$1 \$3;
 #X msg 67 104 \$1 \$3;
@@ -1526,12 +1527,13 @@ background_sound-44100 background;
 #X obj 295 74 r mimic_TriggerDistraction;
 #X obj 67 38 route CloudPosXYZ BirdPosXYZ TriggerDistraction BirdMessage
 RestartGame, f 92;
-#X obj 507 216 s bird-message;
-#X obj 684 218 s restart-set;
-#X text 503 246 /BirdMessage 0..3 0|1;
-#X text 685 245 /Restart 'bang';
+#X obj 481 224 s bird-message;
+#X obj 751 239 s restart-set;
 #X text 282 247 /TriggerDistraction 0|1;
 #X obj 704 78 print OSC-cant-parse!!!;
+#X text 750 183 /Restart '1';
+#X obj 751 214 bang;
+#X text 482 191 /BirdMessage 0..3 length? 0|1;
 #X connect 0 0 19 0;
 #X connect 1 0 4 0;
 #X connect 2 0 3 0;
@@ -1554,8 +1556,9 @@ RestartGame, f 92;
 #X connect 19 1 1 0;
 #X connect 19 2 13 0;
 #X connect 19 3 20 0;
-#X connect 19 4 21 0;
-#X connect 19 5 25 0;
+#X connect 19 4 25 0;
+#X connect 19 5 23 0;
+#X connect 25 0 21 0;
 #X restore 30 88 pd fromUnity;
 #N canvas 0 22 450 300 netreceive 0;
 #X obj 32 213 oscparse;
@@ -1693,7 +1696,7 @@ RestartGame, f 92;
 #X connect 47 0 44 0;
 #X connect 48 0 42 1;
 #X restore 13 169 pd gui-glue ____;
-#N canvas 153 224 959 523 control 0;
+#N canvas 7 255 959 523 control 0;
 #X obj 4 92 _4chan-mix gavio dacout;
 #X obj 278 92 _4chan-mix cloud dacout;
 #X obj 327 300 _vol 1;
@@ -1703,8 +1706,8 @@ RestartGame, f 92;
 #N canvas 5 5 572 371 master 0;
 #X obj 101 101 cnv 15 136 144 empty empty empty 20 12 0 14 -204786
 -66577 0;
-#X obj 140 119 vsl 30 119 0 127 0 0 master master-set [103] 0 -9 0
-10 -262144 -1 -1 9600 1;
+#X obj 140 119 vsl 30 119 0 127 0 0 master master-set [100] 0 -9 0
+10 -262144 -1 -1 9291 1;
 #X obj 176 119 vu 30 120 vu-master empty -1 -8 0 9 -66577 -1 1 0;
 #X obj 106 119 vsl 30 119 0 127 0 0 all-v all-v-set [100] 0 -9 0 10
 -262144 -1 -1 9291 1;
