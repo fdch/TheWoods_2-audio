@@ -1,0 +1,3 @@
+ambsound-set 0.161616;
+ambhp-set 5696.07;
+amblp-set 9954.05;

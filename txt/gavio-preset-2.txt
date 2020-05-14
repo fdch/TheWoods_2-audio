@@ -1,0 +1,9 @@
+gaviotamp-set 0.0721552;
+gaviolp-set 11609.4;
+gaviohp-set 4361.27;
+gaviofreq-set 98.4252;
+gaviobase-set 116;
+gaviospread-set 4.68504;
+gaviolpmax-set 0.611109;
+gaviotab-index-set 4 5;
+gavioboid-set 2673.09;
