@@ -5,3 +5,6 @@ vid
 *.aup
 *_data
 bak
+!Thunder.wav
+!90_rain_with_thunder-44100.wav
+!background_sound-44100.wav
