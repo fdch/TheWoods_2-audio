@@ -2,34 +2,18 @@
 #N struct 1368-point float x0 float y0 float s;
 #N canvas 1007 63 250 257 12;
 #X declare -path ./lib -lib fd_lib -path fd_lib -path vbap;
-#N canvas 140 88 524 585 init 0;
-#X obj 21 53 r init;
-#X obj 223 363 text define -k more_unity_messages;
-#A set pd-dsp-set 1 \; ambsound_preset-set 0 \; ambience-vol-set 127
-\; gaviopreset-set 0 \; gavio-vol-set 125 \; cloud-vol-set 100 \; bird-vol-set
-100 \; all-v-set 100 \; master-set 100 \; cloud-spigot-set 1 \; bird-spigot-set
-1 \; ambience-spigot-set 1 \; autoPos-ambience-set 1 \; listen-set
-bang \; stop-listening-set bang \; listening_port-set 6161 \;;
-#X obj 21 96 t b b;
-#X obj 315 48 loadbang;
-#X obj 315 77 s init-set;
-#X obj 21 127 f \$0;
-#X msg 252 118 \; ambience-vol-set 127 \; cloud-vol-set 120 \; bird-vol-set
-120 \; flapping-vol-set 100 \; cold-vol-set 60 \; rain-vol-set 105
-\; back-vol-set 95 \; gavio-vol-set 127 \; notes-vol-set 100 \; pedals-line-set
-100 0 \; \;;
-#X msg 21 158 \; pd-dsp-set 1 \; \; autoPos-ambience-set 1 \; autoPos-flapping-set
-1 \; init-spigots bang \; \; tension-line-set 1000 \; tension-time-set
-2000 \; \; \; subwoofer-channel-set 5 \; subwoofer-vol-set 0 \; \;
-all-v-set 113 \; \; \; vu-meter-set 0 \; \; listen-set bang \; \; \$1-control
-menu-open \;;
+#N canvas 208 75 440 290 init 0;
+#X obj 18 48 loadbang;
+#X obj 18 77 s init-set;
 #X obj 13 13 declare -path ./lib -lib fd_lib -path fd_lib -path vbap
 ;
-#X connect 0 0 2 0;
-#X connect 2 0 5 0;
-#X connect 2 1 6 0;
-#X connect 3 0 4 0;
-#X connect 5 0 7 0;
+#X text 14 121 Download the following libraries from Help>Find Externals:
+;
+#X text 78 158 fd_lib;
+#X text 79 176 vbap;
+#X text 79 196 else;
+#X text 80 216 boids;
+#X connect 0 0 1 0;
 #X restore 62 19 pd init ________;
 #N canvas 303 110 509 325 presets 0;
 #N canvas 0 22 722 420 extra-presets 0;
@@ -38,7 +22,7 @@ menu-open \;;
 #X floatatom 79 95 5 0 0 0 - - -;
 #X obj 79 69 r back-vol;
 #X obj 382 247 text define -k extra-presets;
-#A set rain-vol-set 105 \; back-vol-set 95 \; cold-vol-set 60 \;;
+#A set rain-vol-set 96 \; back-vol-set 94 \; cold-vol-set 61 \;;
 #X floatatom 135 129 5 0 0 0 - - -;
 #X obj 135 103 r cold-vol;
 #X msg 339 212 write ../txt/extra-presets-\$1.txt;
@@ -1056,7 +1040,6 @@ background_sound-44100 background;
 #X obj 362 73 r pd;
 #X obj 362 99 route dsp;
 #X msg 362 125 set \$1;
-#X msg 237 96 \; pd dsp \$1;
 #N canvas 33 78 413 428 ambience 0;
 #X obj 24 15 noise~;
 #X obj 24 243 hip~ 600;
@@ -1339,6 +1322,10 @@ background_sound-44100 background;
 #X msg 218 128 3 4 5 6;
 #X obj 403 137 r cloud;
 #X obj 403 163 sel 0 1;
+#X obj 109 38 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 149 42 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 17 0;
@@ -1374,8 +1361,10 @@ background_sound-44100 background;
 #X connect 30 0 31 0;
 #X connect 31 0 28 0;
 #X connect 31 1 26 0;
+#X connect 32 0 14 0;
+#X connect 33 0 18 0;
 #X restore 25 342 pd pedals;
-#N canvas 0 22 450 604 notes 0;
+#N canvas 531 140 450 604 notes 0;
 #X obj 86 124 + 60;
 #X obj 83 257 makenote 100 1000;
 #X obj 81 287 pack;
@@ -1479,10 +1468,17 @@ background_sound-44100 background;
 #X obj 229 198 _panPos ambience notes;
 #X obj 229 222 _panPos ambience pedals;
 #X restore 353 318 pd panPos;
-#X connect 6 0 11 0;
+#X obj 260 116 t f f;
+#X obj 305 166 sel;
+#X msg 276 258 \; pd dsp \$1;
+#X msg 299 200 \; stop-listening-set bang \;;
+#X connect 6 0 19 0;
 #X connect 8 0 9 0;
 #X connect 9 0 10 0;
 #X connect 10 0 7 0;
+#X connect 19 0 21 0;
+#X connect 19 1 20 0;
+#X connect 20 0 22 0;
 #X restore 62 97 pd sound _______;
 #N canvas 0 22 450 300 network 0;
 #N canvas 0 22 450 300 ports_setup 0;
@@ -1589,9 +1585,6 @@ GameOnOff, f 92;
 #X restore 30 60 pd netreceive;
 #X restore 62 123 pd network _____;
 #N canvas 208 76 440 286 gui-glue 0;
-#X obj 190 27 text define -k 4chan-mixers;
-#A set gavio \; ambience \; cloud \; flapping \; bird \; rain \; back
-\; notes \; pedals \;;
 #N canvas 0 22 450 300 lines 0;
 #X obj 31 48 r master-line-set;
 #X obj 31 98 pack f 5000;
@@ -1616,7 +1609,7 @@ GameOnOff, f 92;
 #X connect 7 2 6 0;
 #X connect 8 0 7 0;
 #X restore 31 39 pd lines;
-#N canvas 0 22 960 512 multi-buttons 0;
+#N canvas 207 76 443 285 multi-buttons 0;
 #N canvas 0 22 450 300 mute 0;
 #X obj 13 25 r mute;
 #X obj 13 51 t b f;
@@ -1636,7 +1629,7 @@ GameOnOff, f 92;
 #X connect 5 1 4 1;
 #X connect 6 0 5 0;
 #X connect 7 0 2 0;
-#X restore 25 31 pd mute;
+#X restore 23 55 pd mute;
 #N canvas 0 22 450 300 init-spigots 0;
 #X obj 11 99 symbol;
 #X obj 11 205 s;
@@ -1653,7 +1646,7 @@ GameOnOff, f 92;
 #X connect 4 0 1 0;
 #X connect 5 0 6 0;
 #X connect 6 0 0 0;
-#X restore 24 61 pd init-spigots;
+#X restore 23 84 pd init-spigots;
 #N canvas 0 22 450 300 all-ambience 0;
 #X obj 27 46 t b f;
 #X obj 27 96 symbol;
@@ -1675,7 +1668,7 @@ GameOnOff, f 92;
 #X connect 6 0 1 0;
 #X connect 7 0 4 0;
 #X connect 8 0 2 1;
-#X restore 26 90 pd all-ambience;
+#X restore 23 113 pd all-ambience;
 #N canvas 0 22 450 300 vu-meter 0;
 #X obj 58 139 symbol;
 #X obj 44 256 s;
@@ -1696,32 +1689,66 @@ GameOnOff, f 92;
 #X connect 6 0 2 0;
 #X connect 7 0 0 0;
 #X connect 8 0 5 0;
-#X restore 22 118 pd vu-meter;
-#X obj 566 160 r start;
-#X obj 306 157 r stop;
-#X obj 306 185 int 5000;
-#X obj 306 216 t f f;
-#X obj 306 322 del;
-#X obj 566 190 int 5000;
-#X obj 566 230 t f f;
-#X obj 566 336 del;
-#X msg 598 259 \; pedals-line-set 0 \$1 \; master-line-set 100 \$1
-\; tension-set 0 \;;
-#X msg 566 362 \; melody-set 0 \; pedal-set 0 \;;
-#X msg 306 348 \; pedal-set 0 \; tension-set 0 \;;
-#X msg 338 245 \; melody-set 0 \; pedals-line-set 0 \$1 \; master-line-set
+#X restore 23 142 pd vu-meter;
+#N canvas 0 22 450 300 stop 0;
+#X obj 44 24 r stop;
+#X obj 44 52 int 5000;
+#X obj 44 83 t f f;
+#X obj 44 189 del;
+#X msg 44 215 \; pedal-set 0 \; tension-set 0 \;;
+#X msg 76 112 \; melody-set 0 \; pedals-line-set 0 \$1 \; master-line-set
 0 \$1 \;;
-#X connect 4 0 9 0;
-#X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 7 1 15 0;
-#X connect 8 0 14 0;
-#X connect 9 0 10 0;
-#X connect 10 0 11 0;
-#X connect 10 1 12 0;
-#X connect 11 0 13 0;
-#X restore 32 68 pd multi-buttons;
+#X obj 109 24 r start-stop-delay;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 5 0;
+#X connect 3 0 4 0;
+#X connect 6 0 1 1;
+#X restore 23 171 pd stop;
+#N canvas 0 22 450 300 start 0;
+#X obj 27 25 r start;
+#X obj 27 55 int 5000;
+#X obj 27 95 t f f;
+#X obj 27 201 del;
+#X msg 59 124 \; pedals-line-set 0 \$1 \; master-line-set 100 \$1 \;
+tension-set 0 \;;
+#X msg 27 227 \; melody-set 0 \; pedal-set 0 \;;
+#X obj 109 24 r start-stop-delay;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 3 0 5 0;
+#X connect 6 0 1 1;
+#X restore 23 200 pd start;
+#N canvas 0 22 557 592 init 0;
+#X obj 22 18 r init;
+#X obj 22 61 t b b;
+#X obj 22 92 f \$0;
+#X msg 253 83 \; ambience-vol-set 127 \; cloud-vol-set 120 \; bird-vol-set
+120 \; flapping-vol-set 100 \; cold-vol-set 60 \; rain-vol-set 105
+\; back-vol-set 95 \; gavio-vol-set 127 \; notes-vol-set 100 \; pedals-line-set
+100 0 \; \;;
+#X obj 22 514 del;
+#X msg 22 122 2000 \; pd-dsp-set 1 \; \; autoPos-ambience-set 1 \;
+autoPos-flapping-set 1 \; init-spigots bang \; \; tension-line-set
+1000 \; tension-time-set 2000 \; \; start-stop-delay-set 5000 \; \;
+subwoofer-channel-set 5 \; subwoofer-vol-set 0 \; \; all-v-set 113
+\; \; \; vu-meter-set 0 \; print waiting 2 seconds before re-listening...
+\; \; stop-listening-set bang \; \; \$1-control menu-open \;;
+#X msg 22 540 \; print listening... \; listen-set bang \;;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 2 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X restore 23 26 pd init;
+#X obj 202 33 text define -k 4chan-mixers;
+#A set gavio \; ambience \; cloud \; flapping \; bird \; rain \; back
+\; notes \; pedals \;;
+#X restore 31 68 pd multi-buttons;
 #N canvas 107 179 435 455 single-buttons 0;
 #X obj 37 31 r port-setup;
 #X obj 37 83 s pd-ports_setup;
@@ -1749,9 +1776,12 @@ GameOnOff, f 92;
 #X connect 11 0 10 0;
 #X connect 14 0 6 0;
 #X connect 14 1 9 0;
-#X restore 33 105 pd single-buttons;
+#X restore 31 97 pd single-buttons;
+#X obj 34 147 r print;
+#X obj 34 188 print -n;
+#X connect 3 0 4 0;
 #X restore 62 149 pd gui-glue ____;
-#N canvas 44 63 959 523 control 1;
+#N canvas 28 198 959 523 control 0;
 #X obj 4 92 _4chan-mix gavio dacout;
 #X obj 278 92 _4chan-mix cloud dacout;
 #X obj 327 300 _vol 1;
@@ -1761,8 +1791,8 @@ GameOnOff, f 92;
 #N canvas 5 5 572 371 master 0;
 #X obj 101 101 cnv 15 136 144 empty empty empty 20 12 0 14 -204786
 -66577 0;
-#X obj 140 119 vsl 30 119 0 127 0 0 master master-set [0] 0 -9 0 10
--262144 -1 -1 0 1;
+#X obj 140 119 vsl 30 119 0 127 0 0 master master-set [109] 0 -9 0
+10 -262144 -1 -1 10200 1;
 #X obj 176 119 vu 30 120 vu-master empty -1 -8 0 9 -66577 -1 1 0;
 #X obj 106 119 vsl 30 119 0 127 0 0 all-v all-v-set [113] 0 -9 0 10
 -262144 -1 -1 10499 1;
@@ -1772,12 +1802,12 @@ GameOnOff, f 92;
 #X obj 412 92 _4chan-mix flapping dacout;
 #N canvas 163 150 446 310 listen 0;
 #X obj 21 21 cnv 15 198 78 listening-canvas listening-canvas-set listening-canvas
-10 12 0 14 -225271 -1 0;
+10 12 0 14 -233017 -1 0;
 #X obj 131 57 bng 15 250 50 0 listen listen-set listen 17 7 0 10 -4034
 -1 -1;
 #X obj 35 66 nbx 4 20 3000 10000 0 1 listening_port listening_port-set
 listening_port 0 -10 0 15 -262130 -1 -1 6161 256;
-#X obj 131 76 bng 15 250 50 0 stop-listening lstop-listening-set stop-listening
+#X obj 131 76 bng 15 250 50 0 stop-listening stop-listening-set stop-listening
 17 7 0 10 -258113 -1 -1;
 #X obj 149 26 bng 15 250 50 0 port-setup port-setup-set port-setup
 17 7 0 10 -262130 -1 -1;
@@ -1785,14 +1815,14 @@ listening_port 0 -10 0 15 -262130 -1 -1 6161 256;
 -262144 -1 -1;
 #X coords 0 -1 1 1 200 80 1 20 20;
 #X restore 4 6 pd listen;
-#X obj 344 50 tgl 15 0 cloud cloud-set cloud 17 7 0 10 -262144 -1 -1
+#X obj 425 47 tgl 15 0 cloud cloud-set cloud 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 279 6 tgl 60 0 pd-dsp pd-dsp-set DSP 15 30 0 15 -204786 -1 -1
-1 1;
+0 1;
 #X obj 142 92 _4chan-mix ambience dacout;
-#X obj 345 10 bng 15 250 50 0 triggerCloud triggerCloud-set triggerCloud
+#X obj 425 6 bng 15 250 50 0 triggerCloud triggerCloud-set triggerCloud
 17 7 0 10 -262144 -1 -1;
-#X obj 345 30 bng 15 250 50 0 bird_sound bird_sound-set bird_sound
+#X obj 425 26 bng 15 250 50 0 bird_sound bird_sound-set bird_sound
 17 7 0 10 -262144 -1 -1;
 #X obj 212 6 bng 60 250 50 0 init init-set init 20 30 0 15 -204786
 -1 -1;
@@ -1805,21 +1835,21 @@ listening_port 0 -10 0 15 -262130 -1 -1 6161 256;
 #X obj 204 138 tgl 15 0 gavioplot gavioplot-set plot 17 7 0 10 -262144
 -1 -1 0 1;
 #X obj 163 138 tgl 15 0 gavioboid gavioboid-set boid 17 7 0 10 -262144
--1 -1 0 1;
+-1 -1 2673.09 1;
 #X obj 106 173 vsl 15 128 1e-05 1 1 0 gaviotamp gaviotamp-set vol 0
--9 0 10 -262144 -1 -1 0 1;
+-9 0 10 -262144 -1 -1 4800 1;
 #X obj 124 173 vsl 15 128 20 20000 1 0 gaviolp gaviolp-set lp 0 -9
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 9700 1;
 #X obj 142 173 vsl 15 128 20 20000 1 0 gaviohp gaviohp-set hp 0 -9
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 8800 1;
 #X obj 160 173 vsl 15 128 0 100 0 0 gaviofreq gaviofreq-set frq 0 -9
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 11500 1;
 #X obj 178 173 vsl 15 128 0 127 0 0 gaviobase gaviobase-set bas 0 -9
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 10000 1;
 #X obj 196 173 vsl 15 128 0 5 0 0 gaviospread gaviospread-set spr 0
--9 0 10 -262144 -1 -1 0 1;
+-9 0 10 -262144 -1 -1 12700 1;
 #X obj 214 173 vsl 15 128 0.01 20000 1 0 gaviolpmax gaviolpmax-set
-lpm 0 -9 0 10 -262144 -1 -1 0 1;
+lpm 0 -9 0 10 -262144 -1 -1 10400 1;
 #N canvas 0 23 761 506 boid-ctrl 0;
 #X msg 412 352 dump;
 #X msg 89 101 neighbors \$1;
@@ -1955,7 +1985,7 @@ lpm 0 -9 0 10 -262144 -1 -1 0 1;
 #X obj 409 209 text define -k gavio-presets;
 #A set gaviotamp-set 0.000775825 \; gaviolp-set 3911.73 \; gaviohp-set
 2397.56 \; gaviofreq-set 90.5512 \; gaviobase-set 100 \; gaviospread-set
-5 \; gaviolpmax-set 1445.1 \; gaviotab-index-set 4 0 \; gavioboid-set
+5 \; gaviolpmax-set 1445.1 \; gaviotab-index-set 4 5 \; gavioboid-set
 2673.09 \;;
 #X obj 66 68 r gaviotamp;
 #X obj 107 99 r gaviolp;
@@ -2029,11 +2059,11 @@ lpm 0 -9 0 10 -262144 -1 -1 0 1;
 #X restore 4 300 pd gavio;
 #N canvas 0 22 834 529 ambience 0;
 #X obj 105 198 vsl 15 100 0 1 0 0 ambsound ambsound-set vol 0 -9 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 1600 1;
 #X obj 122 198 vsl 15 100 20 20000 1 0 ambhp ambhp-set hp 0 -9 0 10
--262144 -1 -1 0 1;
+-262144 -1 -1 8100 1;
 #X obj 141 198 vsl 15 100 20 20000 1 0 amblp amblp-set lp 0 -9 0 10
--262144 -1 -1 0 1;
+-262144 -1 -1 8900 1;
 #N canvas 457 22 776 572 ambience-preset 0;
 #X obj 104 283 list split 1;
 #X obj 115 167 pack f 0;
@@ -2081,9 +2111,9 @@ recall 0 -8 0 10 -262144 -1 -1 0;
 0 -8 0 10 -261234 -1 -1 2;
 #X coords 0 -1 1 1 77 208 1 100 100;
 #X restore 244 300 pd ambience;
-#X obj 437 11 tgl 15 0 mute mute-set mute 17 7 0 10 -262144 -1 -1 0
+#X obj 517 7 tgl 15 0 mute mute-set mute 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 436 33 tgl 15 0 mimic_TriggerDistraction mimic_TriggerDistraction-set
+#X obj 517 29 tgl 15 0 mimic_TriggerDistraction mimic_TriggerDistraction-set
 mimic_TriggerDistraction 17 7 0 10 -262144 -1 -1 0 1;
 #X obj 680 92 _4chan-mix rain dacout;
 #X obj 815 92 _4chan-mix back dacout;
@@ -2095,35 +2125,37 @@ mimic_TriggerDistraction 17 7 0 10 -262144 -1 -1 0 1;
 subwoofer-channel 0 -8 0 10 -262144 -1 -1 5 256;
 #X obj 335 467 hsl 128 15 0 127 0 0 subwoofer-vol subwoofer-vol-set
 subwoofer-vol -2 -8 0 10 -204786 -1 -1 0 1;
-#X obj 483 11 tgl 15 0 vu-meter vu-meter-set vu-meter 17 7 0 10 -262144
+#X obj 563 7 tgl 15 0 vu-meter vu-meter-set vu-meter 17 7 0 10 -262144
 -1 -1 0 1;
-#X obj 438 64 hsl 128 15 0 127 0 0 cold-vol cold-vol-set cold-vol -2
--8 0 10 -204786 -1 -1 6000 1;
-#X obj 577 14 hradio 15 1 0 3 tension tension-set tension 0 -8 0 10
+#X obj 518 64 hsl 128 15 0 127 0 0 cold-vol cold-vol-set cold-vol -2
+-8 0 10 -204786 -1 -1 6100 1;
+#X obj 657 14 hradio 15 1 0 3 tension tension-set tension 0 -8 0 10
 -262144 -1 -1 0;
 #X obj 331 486 namecanvas \$0-control;
-#X obj 344 70 tgl 15 0 all-ambience all-ambience-set all-ambience 17
+#X obj 425 67 tgl 15 0 all-ambience all-ambience-set all-ambience 17
 7 0 10 -262144 -1 -1 0 1;
-#X obj 576 47 nbx 4 14 0 9999 0 0 tension-time tension-time-set tension-time
+#X obj 656 47 nbx 4 14 0 9999 0 0 tension-time tension-time-set tension-time
 0 -8 0 10 -262144 -1 -1 2000 256;
-#X obj 577 73 nbx 4 14 0 9999 0 0 tension-line tension-line-set tension-line
+#X obj 657 73 nbx 4 14 0 9999 0 0 tension-line tension-line-set tension-line
 0 -8 0 10 -262144 -1 -1 1000 256;
-#X obj 650 7 tgl 15 0 catch-bird-1 catch-bird-1-set catch-bird-1 17
+#X obj 730 6 tgl 15 0 catch-bird-1 catch-bird-1-set catch-bird-1 17
 7 0 10 -262144 -1 -1 0 1;
-#X obj 650 27 tgl 15 0 catch-bird-2 catch-bird-2-set catch-bird-2 17
+#X obj 730 26 tgl 15 0 catch-bird-2 catch-bird-2-set catch-bird-2 17
 7 0 10 -262144 -1 -1 0 1;
-#X obj 650 47 tgl 15 0 catch-bird-3 catch-bird-3-set catch-bird-3 17
+#X obj 730 46 tgl 15 0 catch-bird-3 catch-bird-3-set catch-bird-3 17
 7 0 10 -262144 -1 -1 0 1;
-#X obj 650 67 tgl 15 0 catch-bird-4 catch-bird-4-set catch-bird-4 17
+#X obj 730 66 tgl 15 0 catch-bird-4 catch-bird-4-set catch-bird-4 17
 7 0 10 -262144 -1 -1 0 1;
 #X obj 818 28 tgl 15 0 pedal pedal-set pedal 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 818 47 tgl 15 0 melody melody-set melody 17 7 0 10 -262144 -1
 -1 0 1;
-#X obj 212 70 bng 15 250 50 0 start start-set start 17 7 0 10 -4034
+#X obj 345 6 bng 15 250 50 0 start start-set start 17 7 0 10 -4034
 -1 -1;
-#X obj 255 70 bng 15 250 50 0 stop stop-set stop 17 7 0 10 -262130
+#X obj 345 26 bng 15 250 50 0 stop stop-set stop 17 7 0 10 -262130
 -1 -1;
+#X obj 345 59 nbx 4 14 100 10000 0 0 start-stop-delay start-stop-delay-set
+start-stop-delay 0 -8 0 10 -262130 -1 -1 5000 256;
 #X restore 62 175 pd control _____;
 #N canvas 67 163 450 297 dac 0;
 #N canvas 0 22 450 300 rec 0;
@@ -2162,7 +2194,7 @@ subwoofer-vol -2 -8 0 10 -204786 -1 -1 0 1;
 #X obj 133 127 counter;
 #X obj 133 153 t f f;
 #X msg 242 127 set \$1;
-#X msg 242 153 15;
+#X msg 242 153 18;
 #X obj 266 97 loadbang;
 #X obj 133 179 makefilename ../rec/rec-%03d.wav;
 #X msg 133 205 \; rec open \$1 \, start;
