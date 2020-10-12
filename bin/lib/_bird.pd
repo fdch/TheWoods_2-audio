@@ -30,11 +30,13 @@
 #X obj 139 69 !=;
 #X obj 226 531 *~;
 #X obj 226 82 dbtorms;
-#X obj 139 97 t b f;
+#X obj 137 113 t b f;
 #X obj 139 14 inlet;
 #X obj 38 526 *~ 0.01;
 #X obj 330 370 env~;
 #X floatatom 330 396 5 0 0 0 - - -;
+#X obj 226 57 change;
+#X obj 138 91 change;
 #X connect 0 0 1 0;
 #X connect 1 0 9 0;
 #X connect 2 0 1 0;
@@ -66,8 +68,8 @@
 #X connect 25 0 29 1;
 #X connect 25 1 26 0;
 #X connect 27 0 28 0;
-#X connect 27 1 30 0;
-#X connect 28 0 31 0;
+#X connect 27 1 36 0;
+#X connect 28 0 37 0;
 #X connect 29 0 22 1;
 #X connect 30 0 23 0;
 #X connect 31 0 18 0;
@@ -75,3 +77,5 @@
 #X connect 32 0 27 0;
 #X connect 33 0 22 0;
 #X connect 34 0 35 0;
+#X connect 36 0 30 0;
+#X connect 37 0 31 0;
