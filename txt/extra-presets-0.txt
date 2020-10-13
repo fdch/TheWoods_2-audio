@@ -1,3 +1,14 @@
-rain-vol-set 96;
-back-vol-set 94;
-cold-vol-set 61;
+rain-vol-set 92.8077;
+back-vol-set 79.375;
+cold-vol-set 0;
+ambience-vol-set 95.25;
+cloud-vol-set 103.798;
+bird-vol-set 102.577;
+flapping-vol-set 0;
+gavio-vol-set 105.019;
+notes-vol-set 86.7019;
+start-stop-delay-set 2500;
+subwoofer-channel-set 5;
+subwoofer-vol-set 0;
+tension-line-set 1000;
+tension-time-set 2000;
