@@ -8,7 +8,7 @@ flapping-vol-line-set 116.01;
 gavio-vol-line-set 117.231;
 notes-vol-line-set 97.6923;
 start-stop-delay-line-set 500;
-subwoofer-channel-line-set 5;
+subwoofer-channel-line-set 7;
 sub-vol-line-set 0;
 master-vol-line-set 107.627;
 pedals-vol-line-set 90.3654;

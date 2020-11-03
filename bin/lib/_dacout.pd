@@ -27,6 +27,7 @@
 #X obj 366 157 r \$2-vol;
 #X obj 39 282 lop~ 22050;
 #X obj 106 247 r lop;
+#X obj 361 33 inlet;
 #X connect 0 0 2 0;
 #X connect 2 0 14 0;
 #X connect 3 0 2 0;
@@ -56,3 +57,4 @@
 #X connect 25 0 6 0;
 #X connect 26 0 10 0;
 #X connect 27 0 26 1;
+#X connect 28 0 5 0;

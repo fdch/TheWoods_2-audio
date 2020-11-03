@@ -1,0 +1,16 @@
+#N canvas 541 501 450 300 12;
+#X obj 46 42 adc~ 5 6;
+#X obj 46 66 dac~ 1 2;
+#X obj 221 44 loadbang;
+#X msg 221 68 \; pd dsp 1;
+#X obj 132 120 env~;
+#X floatatom 132 144 5 0 0 0 - - -;
+#X obj 180 120 env~;
+#X floatatom 180 144 5 0 0 0 - - -;
+#X connect 0 0 1 0;
+#X connect 0 0 4 0;
+#X connect 0 1 1 1;
+#X connect 0 1 6 0;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+#X connect 6 0 7 0;

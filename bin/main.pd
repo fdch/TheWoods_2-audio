@@ -1,7 +1,7 @@
 #N canvas 524 50 751 422 12;
 #X declare -path ./lib -lib fd_lib -path fd_lib -path vbap;
 #X obj 66 59 tgl 60 0 pd-dsp pd-dsp-set DSP 2 30 0 30 -203904 -204800
--4160 0 1;
+-4160 1 1;
 #X obj 4 59 bng 60 250 50 0 init init-set Init 10 30 0 15 -204800 -4032
 -1;
 #X obj 190 59 tgl 60 0 record record-set Rec 15 30 0 15 -261234 -1
@@ -23,7 +23,7 @@
 2 8 0 10 -232576 -159808 -1 0;
 #X obj 561 59 bng 60 250 50 0 \$0-write-presets \$0-write-presets-set
 Store 7 30 0 15 -261234 -258113 -1;
-#N canvas 376 294 816 402 title 1;
+#N canvas 376 294 816 402 title 0;
 #X obj 21 21 cnv 50 740 50 empty empty TheWoods2-audio 200 25 0 40
 -232576 -1 0;
 #X text 325 122 Download the following libraries from Help>Find Externals:
@@ -75,7 +75,7 @@ Store 7 30 0 15 -261234 -258113 -1;
 0 \; ambience-vol-line-set 106.24 \; cloud-vol-line-set 97.6923 \;
 bird-vol-line-set 109.904 \; flapping-vol-line-set 113.567 \; gavio-vol-line-set
 112.346 \; notes-vol-line-set 92.8077 \; start-stop-delay-line-set
-100 \; subwoofer-channel-line-set 5 \; sub-vol-line-set 0 \; master-vol-line-set
+100 \; subwoofer-channel-line-set 7 \; sub-vol-line-set 0 \; master-vol-line-set
 107.627 \; pedals-vol-line-set 0 \; amblp-line-set 7529.87 \; ambsound-line-set
 0.414141 \; ambhp-line-set 3495.06 \; gavioboid-line-set 1 \; gaviotamp-line-set
 0.0128895 \; gaviolp-line-set 4605.05 \; gaviohp-line-set 6738.9 \;
@@ -1579,9 +1579,9 @@ background_sound-44100 background, f 33;
 #X connect 37 2 36 0;
 #X restore 671 19 pd NOTES;
 #X restore 21 203 pd sounds;
-#N canvas 0 22 450 300 spatialization 1;
+#N canvas 0 22 450 300 spatialization 0;
 #X obj 15 102 _panPos bird bird;
-#N canvas 432 121 711 387 position 1;
+#N canvas 432 121 711 387 position 0;
 #X text 36 13 Cloud Position;
 #X text 288 12 Bird Position;
 #X msg 271 308 \; fromUnity BirdPosXYZ \$1 0 \$2;
@@ -1733,7 +1733,7 @@ background_sound-44100 background, f 33;
 #X connect 33 0 27 0;
 #X connect 33 1 28 0;
 #X restore 21 278 pd dac;
-#N canvas 92 333 725 326 extra-controls 0;
+#N canvas 92 333 725 326 extra-controls 1;
 #X obj 29 19 bng 15 250 50 0 intro_rec intro_rec-set intro/rec 17 7
 0 10 -261234 -1 -1;
 #X obj 30 88 hsl 128 15 0 127 0 0 cold-vol cold-vol-set cold-vol -2
@@ -1743,7 +1743,7 @@ background_sound-44100 background, f 33;
 #X obj 176 81 nbx 4 14 0 9999 0 0 tension-line tension-line-set tension-line
 0 -8 0 10 -262144 -1 -1 0 256;
 #X obj 176 23 nbx 3 14 0 1e+37 0 0 subwoofer-channel subwoofer-channel-set
-subwoofer-channel 0 -8 0 10 -262144 -1 -1 5 256;
+subwoofer-channel 0 -8 0 10 -262144 -1 -1 7 256;
 #N canvas 0 22 1003 525 boid_preferences_and_vbap 0;
 #X obj 75 345 text get bpref;
 #X msg 111 149 read bpref-0.txt;
@@ -1924,6 +1924,9 @@ E-Trig 3 30 0 15 -191407 -1 -1 0 1;
 -1 0 1;
 #X obj 345 116 nbx 4 18 100 10000 0 0 start-stop-delay start-stop-delay-set
 delay 0 -10 0 12 -262130 -1 -1 100 256;
+#X floatatom 385 179 5 0 0 0 - - -;
+#X msg 385 202 \; rotate \$1;
+#X connect 32 0 33 0;
 #X restore 566 307 pd extra-controls;
 #X obj 21 78 declare -path ./lib -lib fd_lib -path fd_lib -path vbap
 , f 64;
