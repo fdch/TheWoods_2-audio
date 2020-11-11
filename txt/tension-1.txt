@@ -24,3 +24,4 @@ gaviobase-line-set 105;
 gaviospread-line-set 4.80315;
 gaviolpmax-line-set 117.053;
 gaviotab-index-line-set 4 5;
+voices-vol-line-set 109.904;
