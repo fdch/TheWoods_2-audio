@@ -1,68 +1,49 @@
 #!/bin/sh
+#
+# version number
 
-VERSION=1.2 # version number
+
+VERSION=1
+MACAPPNAME=TheWoods
+
 # exclude from the deploy
 EXCLUDE=(app app.sh backup backup.sh bak .gitignore)
-LIBNAME=ezaoo
-MACAPPNAME=AccadAoo
-DIR=$(echo ~/Documents/${MACAPPNAME})
-PLUGIN=${DIR}/Plugin
-MACPLUGINDIR=/Library/Audio/Plug-Ins/Components/
-CAMODIR=$(echo ~/Downloads/Camomile)
-APPNAME=${MACAPPNAME}.app
+DEVDIR=~/Development
+DIR=$(pwd)
+APPNAME=${MACAPPNAME}-${VERSION}.app
 APP=${DIR}/${APPNAME} # app bundle
 ZIP=${APP//.app/}-macos.zip
 PATCHDIR=${APP}/Contents/Resources/patch/ # 'patch' dir inside bundle
-PDLIBDIR=~/Library/Pd
-DEPS=$(echo ~/Documents/fd_lib/scripts/deps.sh)
+
 for i in ${EXCLUDE[@]}; do EX+="--exclude=$i "; done
 
 run() {
-	if [[ "$1" == "deploy" ]] || [[ $1 == "d" ]]; then
+	if [[ "$1" == "test" ]] || [[ $1 == "t" ]]; then
+		echo "Opening App"
+		open ${APP}
+	else
+		echo "Creating App"
+		# place everything inside the patch directory
 		rsync -qaP ${EX} ${DIR}/bin/* ${PATCHDIR}
-		rm -rf ${ZIP}
+		
+		
+		# while read d; do
+		# 	DEPDIR="${PATCHDIR}/../extra/${d}"
+		# 	EXTDIR=~/Documents/Pd/externals
+		# 	if [[ -d  ${DEPDIR} ]]; then
+		# 		mkdir ${DEPDIR}
+		# 		rsync ${EXTDIR}/$d ${DEPDIR}
+		# 	fi
+		# done < dependencies.txt
+
+
+		# remove previous zip file if it exists 
+		if [[ -f ${ZIP} ]]; then
+			rm -rf ${ZIP}
+		fi
+		# create a new zip file
 		cd ${DIR} && zip -r ${ZIP} ./*.app && cd - 
 		echo "--- ${APPNAME} created."
-		rsync -qaP ${APP} /Applications
-		rsync -qaP ${EX} ${DIR}/bin/* ${PDLIBDIR}/${LIBNAME}
-		echo "--- ${LIBNAME} created."
-		cd ${PDLIBDIR}
-		rm "${LIBNAME}[v${VERSION}].dex.txt"
-		deken package -v ${VERSION} ${LIBNAME}
-	elif [[ "$1" == "backup" ]] || [[ $1 == "b" ]]; then
-		#	Find next backup item nubmer
-		i=1
-		if [[ -d ${DIR}/bak/bin_1 ]] ; then
-			for dirs in ${DIR}/bak/* ; do 
-				((i++))
-			done
-		fi
-		rsync -aP ${EX} ${DIR}/bin/* ${DIR}/bak/bin_${i}
-	elif [[ "$1" == "test" ]] || [[ $1 == "t" ]]; then
-		open ${APP}
-	elif [[ "$1" == "run" ]] || [[ $1 == "r" ]]; then
-		pd -noprefs -lib aoo -jack -open ${DIR}/bin/${LIBNAME}.pd
-	elif [[ "$1" == "upload" ]] || [[ $1 == "u" ]]; then
-		cd ${PDLIBDIR}
-		DEK=$(ls ${LIBNAME}*.dek)
-		while true; do
-		    read -p "Do you wish to upload ${DEK}?" yn
-		    case $yn in
-		        [Yy]* ) deken upload ${DEK}; break;;
-		        [Nn]* ) exit;;
-		        * ) echo "Please answer yes or no.";;
-		    esac
-		done
-	elif [[ "$1" == "plugin" ]] || [[ $1 == "p" ]]; then
-		TGT=${PLUGIN}/${MACAPPNAME}
-		${DEPS} ${DIR}/bin/${LIBNAME}.pd ${TGT}
-		cp ${DIR}/bin/{AccadAoo,Meta}.txt ${PLUGIN}/${MACAPPNAME}
-		mv ${TGT}/${LIBNAME}.pd ${TGT}/${MACAPPNAME}.pd
-		cd  ${CAMODIR}
-		./camomile -f ${TGT} -o ${PLUGIN}/build
-		sudo rsync -qaP ${PLUGIN}/build/${MACAPPNAME}.component ${MACPLUGINDIR}
-	else
-		echo "Not implemented: $1"
 	fi
 }
 
@@ -73,9 +54,7 @@ elif [[ $# -eq 1 ]]; then
 	run $1
 else
 	echo "No arguments passed."
-	echo "--- Usage: ./app [t|d|b|r]"
+	echo "--- Usage: ./app [t|d|b]"
 	printf "%6s\t(%s)%s\n"  "test"   "t" "ests the app bundle"
 	printf "%6s\t(%s)%s\n"  "deploy" "d" "eploys & zips patch in app bundle"
-	printf "%6s\t(%s)%s\n"  "backup" "b" "ackups <bin>"
-	printf "%6s\t(%s)%s\n"  "run"    "r" "uns the pd file (development)"
 fi

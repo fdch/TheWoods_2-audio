@@ -32,3 +32,5 @@ bak/
 !rec/voices/Mandy3-08.wav
 !rec/voices/Mandy3-09.wav
 !rec/voices/Mandy3-10.wav
+*.app
+*.zip
