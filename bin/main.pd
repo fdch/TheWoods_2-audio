@@ -1,5 +1,6 @@
 #N canvas 529 51 751 459 12;
-#X declare -path ./lib -lib fd_lib -path fd_lib -path vbap;
+#X declare -path ./lib -lib ./lib/fd_lib -path ./lib/fd_lib -path ./lib/vbap
+;
 #X obj 66 59 tgl 60 0 pd-dsp pd-dsp-set DSP 2 30 0 30 -203904 -204800
 -4160 1 1;
 #X obj 4 59 bng 60 250 50 0 init init-set Init 10 30 0 15 -204800 -4032
@@ -2192,8 +2193,6 @@ Kevin4-9 \;;
 #X connect 2 0 3 0;
 #X connect 3 0 1 0;
 #X restore 256 304 pd dac;
-#X obj 21 78 declare -path ./lib -lib fd_lib -path fd_lib -path vbap
-, f 64;
 #X obj 723 23 tgl 15 0 debug debug-set empty 17 7 0 10 -262130 -1 -1
 0 1;
 #N canvas 0 22 1003 525 boid_preferences_and_vbap 0;
@@ -2643,9 +2642,11 @@ delay 0 -10 0 12 -262130 -1 -1 100 256;
 -25 -10 0 12 -204786 -13381 -1 0;
 #X msg 36 135 0;
 #X text 65 136 <-- stereo/quad;
-#X connect 14 0 26 0;
-#X connect 22 0 23 0;
-#X connect 26 0 15 0;
+#X obj 253 86 declare -path ./lib -lib ./lib/fd_lib -path ./lib/fd_lib
+-path ./lib/vbap, f 64;
+#X connect 13 0 25 0;
+#X connect 21 0 22 0;
+#X connect 25 0 14 0;
 #X coords 0 -1 1 1 742 52 2 20 20;
 #X restore 4 5 pd title;
 #X obj 496 121 _4chan-mix cloud dacout CLOUD;
@@ -2672,7 +2673,7 @@ empty 0 -10 0 12 -262130 -1 -1 6161 256;
 #X obj 223 118 _vol 3;
 #X obj 273 118 _vol 4;
 #X obj 111 134 vsl 10 79 0 127 0 0 all-v all-v-set empty 0 -9 0 10
--204786 -1 -1 6542 1;
+-204786 -1 -1 6142 1;
 #X obj 323 118 _vol sub;
 #X obj 373 118 _vol master;
 #X obj 428 118 _vol bin-1;

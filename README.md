@@ -9,7 +9,7 @@ Head to the [releases](https://github.com/fdch/TheWoods_2-audio/releases) page f
 Download the `.zip` file inside the releases pages. Unpack the file in your folder of preference. Now, you can open the app:
 
 1. Double-click on the executable file for your system.
-2. First time only: If prompted to create a directory, you can safely click "NO" or "Cancel"
+2. First time only: If prompted to create a directory, please click "Yes"
 3. First time only: If prompted with allowing microphone access, please select "Yes" or "Allow". 
 2. Once the application has opened: select "stereo" or "quad" on the top-left corner of the patch window. The default is "stereo". You can change this depending on your setup.
 
@@ -40,6 +40,8 @@ ADVANCED: if you open channels 5 and 6 in 'quad' mode, you can route a binaural 
 
 ## Acknowledgments
 
+- Kyoung and Scott Swearingen
+- Marc Ainger
 - Miller Puckette
 - IOhannes Zmölnig
 - Thomas Musil (iem_ambi)

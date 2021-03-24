@@ -26,16 +26,10 @@ run() {
 		# place everything inside the patch directory
 		rsync -qaP ${EX} ${DIR}/bin/* ${PATCHDIR}
 		
-		
 		# while read d; do
-		# 	DEPDIR="${PATCHDIR}/../extra/${d}"
-		# 	EXTDIR=~/Documents/Pd/externals
-		# 	if [[ -d  ${DEPDIR} ]]; then
-		# 		mkdir ${DEPDIR}
-		# 		rsync ${EXTDIR}/$d ${DEPDIR}
-		# 	fi
+		# 	# this should dowlonad w/ deken
+		# 	rsync -qaP ${EXTDIR}/$d "${PATCHDIR}/lib/"
 		# done < dependencies.txt
-
 
 		# remove previous zip file if it exists 
 		if [[ -f ${ZIP} ]]; then

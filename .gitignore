@@ -10,7 +10,6 @@ bak/
 !background_sound-44100.wav
 !pedal.wav
 !melody.wav
-!L0*
 *.asd
 !rec/voices/Kevin4-01.wav
 !rec/voices/Kevin4-02.wav
@@ -34,3 +33,7 @@ bak/
 !rec/voices/Mandy3-10.wav
 *.app
 *.zip
+bin/lib/boids
+bin/lib/vbap
+bin/lib/iem*
+bin/lib/fd_lib
