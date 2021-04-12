@@ -3,7 +3,7 @@
 # version number
 
 
-VERSION=1
+VERSION=1.1
 MACAPPNAME=TheWoods
 
 # exclude from the deploy
@@ -37,6 +37,7 @@ run() {
 		fi
 		# create a new zip file
 		cd ${DIR} && zip -r ${ZIP} ./*.app && cd - 
+		zip ${ZIP} README.md *.txt
 		echo "--- ${APPNAME} created."
 	fi
 }
