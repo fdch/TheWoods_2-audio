@@ -37,3 +37,9 @@ bin/lib/boids
 bin/lib/vbap
 bin/lib/iem*
 bin/lib/fd_lib
+!rec/distorted_voicemail-0.wav
+!rec/distorted_voicemail-1.wav
+!rec/distorted_voicemail-2.wav
+!rec/distorted_voicemail-3.wav
+!rec/distorted_voicemail-4.wav
+!rec/distorted_voicemail-5.wav
