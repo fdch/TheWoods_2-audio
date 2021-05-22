@@ -10,6 +10,7 @@ bak/
 !background_sound-44100.wav
 !pedal.wav
 !melody.wav
+!app_background.wav
 *.asd
 !rec/voices/Kevin4-01.wav
 !rec/voices/Kevin4-02.wav
@@ -43,3 +44,4 @@ bin/lib/fd_lib
 !rec/distorted_voicemail-3.wav
 !rec/distorted_voicemail-4.wav
 !rec/distorted_voicemail-5.wav
+*.reapeaks
