@@ -1,5 +1,0 @@
-#N canvas 264 48 355 237 12;
-#X obj 57 32 inlet;
-#X obj 175 84 _flapping;
-#X obj 57 97 _bird;
-#X connect 0 0 2 0;

@@ -1,8 +1,25 @@
-# TheWoods_2-audio
+# The Woods Audio
 
 This repository contains the audio part for [The Woods AR game](https://github.com/kropcke/TheWoods_2). 
 
-Head to the [releases](https://github.com/fdch/TheWoods_2-audio/releases) page for the latest build.
+Head to the [releases](https://github.com/fdch/TheWoods_2-audio/releases) page for the latest build. 
+
+Please cite our paper:
+```bibtex
+@inproceedings{TheWoodsPaper2021,
+author = { Swearingen,Scott and Kyoung,Swearingen and Camara Halac, Federico and Ammannagari,Sruthi and  Hall, Matts},
+title = {The Woods': A Mixed Reality Two-player Cooperative Game},
+year = {2021},
+booktitle = {ACM SIGGRAPH 2021 Proceedings},
+series = {SIGGRAPH '21}
+}
+```
+
+---
+
+![Patch Reference](doc/img/reference.png "Patch Reference")
+
+---
 
 ## Instructions
 
@@ -33,17 +50,13 @@ ADVANCED: if you open channels 5 and 6 in 'quad' mode, you can route a binaural 
 
 ## Score
 
-![The Woods Score](img/score.png "Score")
-
-## Patch Reference
-![Patch Reference](img/reference.png "Patch Reference")
+![The Woods Score](doc/img/score.png "Score")
 
 ## Acknowledgments
 
-- Kyoung and Scott Swearingen
-- Marc Ainger
-- Miller Puckette
-- IOhannes Zmölnig
-- Thomas Musil (iem_ambi)
-- Ville Pulkki (vbap)
-- The Pd Community in general
+- Kyoung and Scott Swearingen for their inclusivity and openness to new ideas.
+- Marc Ainger for his invaluable guidance and beautiful samples
+- Miller Puckette and the Pure Data community in general, but specifically:
+- IOhannes Zmölnig for iem* libs
+- Thomas Musil for iem_ambi 
+- Ville Pulkki for vbap

@@ -1,7 +1,0 @@
-fd_lib
-vbap
-boids
-iem_ambi
-iem_spec2
-iemmatrix
-iemlib

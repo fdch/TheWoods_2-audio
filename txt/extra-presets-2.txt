@@ -1,3 +1,0 @@
-rain-vol-set 111;
-back-vol-set 107;
-cold-vol-set 0;
