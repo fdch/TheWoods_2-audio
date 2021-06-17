@@ -334,7 +334,7 @@ gaviofreq-line-set 88.189 \; gaviobase-line-set 101 \; gaviospread-line-set
 #X connect 120 2 103 0;
 #X connect 121 0 122 0;
 #X restore 36 233 pd buttons;
-#N canvas 348 63 913 596 network 0;
+#N canvas 309 78 913 596 network 0;
 #X obj 93 76 r listening_port;
 #X floatatom 93 108 5 0 0 0 - - -;
 #X obj 35 128 f;
@@ -409,7 +409,6 @@ GameOnOff Voicemail, f 92;
 #X connect 26 1 28 0;
 #X connect 27 0 29 0;
 #X connect 30 0 25 0;
-#X connect 35 0 37 0;
 #X connect 35 1 36 0;
 #X connect 38 0 23 0;
 #X connect 39 0 24 0;
@@ -1550,7 +1549,7 @@ Kevin4-10 Kevin4-9 \;;
 -1;
 #X msg 171 151 127 \, 0 30000;
 #X obj 172 223 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 2396 1;
 #X obj 171 187 line;
 #X obj 66 335 spigot 1;
 #X obj 119 302 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -1612,7 +1611,7 @@ Kevin4-10 Kevin4-9 \;;
 #X connect 42 0 39 0;
 #X restore 643 40 pd ENDING;
 #N canvas 0 0 1280 778 MUSIC 0;
-#X obj 272 4 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 272 4 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array melody-0 4 float 3;
@@ -1728,7 +1727,7 @@ Kevin4-10 Kevin4-9 \;;
 #X obj 876 315 ==;
 #X obj 734 293 spigot 1;
 #X obj 742 186 spigot;
-#X obj 748 126 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 748 126 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 922 65 spigot;
 #X obj 950 33 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -2382,7 +2381,7 @@ E-Trig 3 30 0 15 -191407 -1 -1 0 1;
 #X obj 327 16 tgl 60 0 pedal pedal-set Notes 8 30 0 15 -204800 -4032
 -1 0 1;
 #X obj 264 16 tgl 60 0 melody melody-set Melody 4 30 0 15 -204786 -4034
--1 0 1;
+-1 1 1;
 #X obj 258 338 nbx 4 18 100 10000 0 0 start-stop-delay start-stop-delay-set
 delay 0 -10 0 12 -262130 -1 -1 100 256;
 #X obj 29 349 tgl 15 0 music-onoff music-onoff-set music-onoff 17 7
@@ -2402,7 +2401,7 @@ delay 0 -10 0 12 -262130 -1 -1 100 256;
 #X connect 1 0 2 0;
 #X restore 257 359 pd visthis;
 #X obj 16 79 tgl 60 0 simulate simulate-set SIM 10 30 0 15 -203904
--1 -1 0 1;
+-1 -1 1 1;
 #X restore 523 293 pd extra-controls;
 #X obj 712 52 bng 15 250 50 0 extra-controls extra-controls-set extra
 17 7 0 10 -203904 -1 -1;

@@ -1,7 +1,7 @@
 # Makefile for The Woods Audio
 NAME=The_Woods_Audio
 MAXVER=1
-MINVER=2
+MINVER=3
 BUILDDIR=builds
 PATCHDIR=patch
 VERSION=$(NAME)-v$(MAXVER).$(MINVER)
