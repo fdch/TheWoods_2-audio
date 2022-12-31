@@ -1,5 +1,9 @@
 # The Woods Audio
 
+"The Woods" is a local cooperative mixed reality game that provides players with face-to-face interactions in pursuit of a shared goal using augmented reality and 4-channel audio spatialization panning. While loneliness in our real lives is increasingly recognized as having dire physical, mental and emotional consequences, cooperative games have been shown to build empathy and provide positive social impact. "The Woods" explores the narrative, mechanical, and sonic components of the game, as well as its development process and the player experience. The goal of our team is to develop a narrative driven AR game that promotes collaborative problem-solving and engages players in an emergent physical and digital experience.
+
+To know more about "The Woods", head to <http://wizaga.com/thewoods.html>
+
 This repository contains the audio part for [The Woods AR game](https://github.com/kropcke/TheWoods_2). 
 
 Head to the [releases](https://github.com/fdch/TheWoods_2-audio/releases) page for the latest build. 
